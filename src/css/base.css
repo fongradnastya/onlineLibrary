@@ -1,0 +1,100 @@
+/* common styles */
+
+.App {
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main{
+    padding-bottom: 50px;
+}
+
+/* header styles */
+
+header{
+    height: 80px;
+    z-index: 100;
+}
+
+.navbar-brand{
+    display: flex;
+    align-items: center;
+}
+
+.brand-name{
+    margin-left: 8px;
+    font-size: 24px;
+}
+
+.add-link{
+    font-weight: 600;
+}
+
+.button-add:hover .add-link{
+    color: white;
+}
+
+@media screen and (max-width: 993px) {
+    .button-add {
+        width: 200px;
+        position: relative;
+        margin-top: 12px;
+        top: auto;
+        right: auto;
+    }
+}
+
+._mobile {
+    display: none;
+}
+
+@media (max-width: 993px) {
+    ._mobile {
+        display: block;
+    }
+    ._desktop{
+        display: none;
+    }
+}
+
+/* footer styles */
+
+footer {
+    margin-top: auto;
+    padding: 40px 0 20px 0;
+    background: #0d6efd;
+    color: white;
+    font-weight: 400;
+}
+
+.footer-link{
+    margin-bottom: 12px;
+    color: white;
+}
+
+.footer a:hover{
+    color: #ececec;
+}
+
+.footer-extra{
+    font-size: 14px;
+    color: white;
+    font-weight: 400;
+    margin-bottom: 12px;
+    display: block;
+    text-decoration: none;
+}
+
+.footer-logos{
+    margin: 20px 0;
+}
+
+.footer-logo{
+    margin-right: 15px;
+}
+
+.logo-img:hover {
+    filter: brightness(0);
+}
