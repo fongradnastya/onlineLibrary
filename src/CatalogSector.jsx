@@ -8,7 +8,7 @@ function CatalogSector({ sectorKey, books, groupingType }) {
     let displayKey;
 
     if(sectorKey === 'Остальное'){
-        displayKey = "Прочие книги"
+        displayKey = "Прочая литература"
     }
     else{
         if (groupingType === 'year_of_publication') {
@@ -16,7 +16,7 @@ function CatalogSector({ sectorKey, books, groupingType }) {
         } else if (groupingType === 'rating') {
             displayKey = 'Литература с рейтингом ' + sectorKey + '/10 звёзд';
         } else if (groupingType === 'authors') {
-            displayKey = 'Книни от ' + sectorKey.split(',').join(', ');
+            displayKey = 'Литература от автора ' + sectorKey.split(',').join(', ');
         } else {
             displayKey = sectorKey; // Default case
         }

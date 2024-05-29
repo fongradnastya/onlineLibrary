@@ -11,7 +11,6 @@ import './css/catalog.css';
 function BookDetailed() {
     const navigate = useNavigate();
     const { currentBook, setCurrentBook } = useContext(BookContext);
-    const { recommendedBook, setRecommendedBook } = useContext(BookContext);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);

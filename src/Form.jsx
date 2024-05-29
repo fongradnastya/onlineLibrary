@@ -115,12 +115,12 @@ function BookForm(){
                 else {
                     if(currentBook){
                         updateBook();
-                        setModalText("Book details have been updated!");
+                        setModalText("Информация о данной книге была обновлена!");
                         setShowModal(true);
                     }
                     else{
                         createBook();
-                        setModalText("New book was added to your library!");
+                        setModalText("Новая книга была добавлена в вашу библиотеку!");
                         setShowModal(true);
                         resetForm();
                     }
@@ -136,13 +136,13 @@ function BookForm(){
             else {
                 if(currentBook){
                     updateBook();
-                    setModalText("Book details have been updated!");
+                    setModalText("Информация о данной книге была обновлена!");
                     setShowModal(true);
 
                 }
                 else{
                     createBook();
-                    setModalText("New book was added to your library!");
+                    setModalText("Новая книга была добавлена в вашу библиотеку!");
                     setShowModal(true);
                     resetForm();
                 }
@@ -250,12 +250,12 @@ function BookForm(){
             </Form>
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Success</Modal.Title>
+                    <Modal.Title>Успех!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>{modalText}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowModal(false)}>
-                        Close
+                        Закрыть
                     </Button>
                 </Modal.Footer>
             </Modal>
