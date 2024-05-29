@@ -1,4 +1,4 @@
-import {Modal, Col, Container, Form, Row} from "react-bootstrap";
+import {Tooltip, OverlayTrigger, Modal, Col, Container, Form, Row} from "react-bootstrap";
 import {useContext, useState} from "react";
 import Button from "react-bootstrap/Button";
 import './css/form.css';
@@ -20,6 +20,8 @@ function BookForm(){
     const [validated, setValidated] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [modalText, setModalText] = useState('');
+    const isbnHelpMessage = "Отправляет запрос на https://openlibrary.org/ для валидации ISBN";
+    const submitHelpMessage = "Убедитесь, что поля формы заполнены верно перед отправкой";
 
     const resetForm = () => {
         setTitle('');
@@ -123,7 +125,6 @@ function BookForm(){
                         resetForm();
                     }
                     setValidated(false);
-                    resetForm();
                 }
             });
         }
@@ -160,7 +161,7 @@ function BookForm(){
         <Container className="form-container">
             <h2>{header}</h2>
             <Form noValidate validated={validated} onSubmit={handleSubmit} md="8" className="book-form">
-                <Form.Group as={Col} md="4" controlId="validationCustom01">
+                <Form.Group as={Col} md="6" controlId="validationCustom01" className="form-group">
                     <Form.Label>Название книги</Form.Label>
                     <Form.Control
                         required
@@ -174,11 +175,11 @@ function BookForm(){
                         Название не может быть пустым
                     </Form.Control.Feedback>
                 </Form.Group>
-                <Form.Label>Автор книги</Form.Label>
-                {authors.map((author, index) => (
-                    <Row key={index}>
-                        <Col>
-                            <Form.Group controlId="validationCustom02">
+                <div className="form-group authors">
+                    <Form.Label>Автор книги</Form.Label>
+                    {authors.map((author, index) => (
+                        <div key={index} className="form-row">
+                            <Form.Group controlId="validationCustom02" className="form-group author-input">
                                 <Form.Control
                                     required
                                     type="text"
@@ -190,14 +191,16 @@ function BookForm(){
                                     Данные об авторе не введены
                                 </Form.Control.Feedback>
                             </Form.Group>
-                        </Col>
-                        <Col xs="auto">
-                            {authors.length !== 1 && <Button variant="danger" onClick={() => handleRemoveClick(index)}>Удалить автора</Button>}
-                        </Col>
-                    </Row>
-                ))}
-                <Button variant="primary" onClick={handleAddClick}>Добавить автора</Button>
-                <Form.Group as={Col} md="4" controlId="validationCustom02">
+                            {authors.length !== 1 &&
+                                <Button className="author-delete button" variant="danger" onClick={() => handleRemoveClick(index)}>
+                                    Удалить автора
+                                </Button>
+                            }
+                        </div>
+                    ))}
+                    <Button className="button" variant="primary" onClick={handleAddClick}>Добавить автора</Button>
+                </div>
+                <Form.Group as={Col} md="6" controlId="validationCustom02" className="form-group">
                     <Form.Label>Год публикации</Form.Label>
                     <Form.Control
                         type="number"
@@ -211,27 +214,39 @@ function BookForm(){
                         Год публикации должен быть между 1800 и 2024
                     </Form.Control.Feedback>
                 </Form.Group>
-                <Form.Label>Рейтинг книги</Form.Label>
-                <StarRating rating={rating} setRating={setRating}/>
-                <Form.Group as={Row} controlId="validationCustom05">
+                <div className="form-group">
+                    <Form.Label>Рейтинг книги</Form.Label>
+                    <StarRating rating={rating} setRating={setRating}/>
+                </div>
+                <Form.Group as={Row} controlId="validationCustom05" className="form-group">
                     <Form.Label>ISBN</Form.Label>
-                    <Col>
-                        <Form.Control
-                            type="text"
-                            placeholder="Введите ISBN номер"
-                            value={isbn}
-                            isInvalid={!!isbnError}
-                            onChange={e => setISBN(e.target.value)}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            {isbnError}
-                        </Form.Control.Feedback>
-                    </Col>
-                    <Col>
-                        <Button onClick={handleValidateISBN}>Проверить ISBN</Button>
-                    </Col>
+                    <div className="form-row">
+                        <div className="isbn-container">
+                            <Form.Control
+                                type="text"
+                                placeholder="Введите ISBN номер"
+                                value={isbn}
+                                isInvalid={!!isbnError}
+                                onChange={e => setISBN(e.target.value)}>
+                            </Form.Control>
+                            <Form.Control.Feedback type="invalid">
+                                {isbnError}
+                            </Form.Control.Feedback>
+                        </div>
+                        <OverlayTrigger
+                            placement="right"
+                            overlay={<Tooltip id="tooltip-isbn">{isbnHelpMessage}</Tooltip>}
+                        >
+                            <Button className="button" onClick={handleValidateISBN}>Проверить ISBN</Button>
+                        </OverlayTrigger>
+                    </div>
                 </Form.Group>
-                <Button type="submit" variant="success">Сохранить изменения</Button>
+                <OverlayTrigger
+                    placement="right"
+                    overlay={<Tooltip id="tooltip-isbn">{submitHelpMessage}</Tooltip>}
+                >
+                    <Button className="button" type="submit" variant="success">Сохранить изменения</Button>
+                </OverlayTrigger>
             </Form>
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
