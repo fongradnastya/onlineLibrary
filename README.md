@@ -1,8 +1,8 @@
-# React + Vite
+# Онлайн каталог книг
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Данный проект был создан с использованием React.js + Vite.js
+- Для хранения данных книг был использован сервис [Firestore](https://firebase.google.com/docs/firestore)
+- Для валидации ISBN был применен [открытый API от OpenLibrary](https://openlibrary.org/developers/api)
+- Были использованы компонены из библиотеки [React Bootstrap](https://react-bootstrap.netlify.app/)
+- Все изображения взяты с сайта [Freepik](https://www.freepik.com/)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
